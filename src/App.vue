@@ -1,15 +1,13 @@
 <template>
-    <div class="wrapper">
-        {{count}}
-        <button @click="plusPlus" 
-        >
-        Plus
-        </button>
+    <div class="wrapper"> 
+        <app-navigation></app-navigation>   
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-//import AppInput from './components/Input';
+import AppNavigation from './components/AppNavigation';
+import AppPopular from './components/AppPopular';
 
 export default {
     data() {
@@ -21,7 +19,12 @@ export default {
     },
     methods: {
         plusPlus() {
-            this.$store.dispatch('increment');
+            this.$store.dispatch({
+                type: POPULAR_MOVIES,
+            })
+            .then(res=>{
+                console.log("coent ", res.results)
+            });
         }
     },
     computed: {
@@ -30,7 +33,8 @@ export default {
         }
     },
     components: {
-        //AppInput
+        AppNavigation,
+        AppPopular,
     }
 }
 </script>
