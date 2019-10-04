@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import {GET_POPULAR_MOVIES} from '../constants'
+import {ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES} from '../constants'
 
 export default {
-    [GET_POPULAR_MOVIES]: (store, data) => {
-        console.log(store.count);
-        console.log(data);
-        store.count++;
-        // Vue.set(state, 'count', state.count++);
-    }
+    [ADD_TO_FAVORITES]: (store, id) => {
+        store.favorites.push(id);
+    },
+    [REMOVE_FROM_FAVORITES]: (store, id) => {
+        store.favorites.splice(store.favorites.indexOf(id), 1);
+    },
 }

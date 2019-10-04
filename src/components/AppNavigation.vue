@@ -1,8 +1,8 @@
 <template>
 <nav>
-    <router-link to="/" name="main">Главная</router-link>
-    <router-link to="/foo" name="foo">Перейти в Foo</router-link>
-    <router-link to="/bar" name="bar">Перейти в Bar</router-link>
+    <router-link to="/" name="main">Main</router-link>
+    <router-link to="/favorites" name="favorites">Favorites</router-link>
+    <router-link to="/nowplaying" name="nowplaying">Now Playing</router-link>
 </nav>
 </template>
 

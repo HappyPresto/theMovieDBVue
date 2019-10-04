@@ -1,6 +1,9 @@
 <template>
-<div class="detailMovie" v-if="detailMovie.legnth != []">
+<div class="detailMovie" v-if="detailMovie.length != []" :key="detailMovie.id">
     <h3>{{detailMovie.title}}</h3>
+    <app-favorites 
+        :id="detailMovie.id">
+    </app-favorites>
     <p>Picture</p>
     <p class="detailMovie__release">{{detailMovie.release_date}}</p>
     <div class="detailMovie__rating">
@@ -18,6 +21,10 @@
                  :key= index 
             >
             <p>{{similarMovie.title}}</p>
+            <div class="detailMovie__similarMovie-rating">
+                <span class="detailMovie__similarMovie-rating-voteAverage">{{similarMovie.vote_average}}</span>
+                <span class="detailMovie__similarMovie-rating-voteCount">{{similarMovie.vote_count}}</span>
+            </div>
             <router-link :to="'/detail/' + similarMovie.id" class="btn btn-success">More</router-link> 
             <hr>
             </div>
@@ -28,6 +35,7 @@
 
 <script>
 import {GET_DETAIL_MOVIE, GET_SIMILAR_MOVIE} from '../constants';
+import AppFavorites from './AppFavorites';
 
 export default {
     data() {
@@ -44,18 +52,22 @@ export default {
             })
 
         this.$store.dispatch(GET_SIMILAR_MOVIE, this.$route.params.id)
-            .then(res => {     
-                /*this.similarMovies = res.results.map((el) => {
-                    console.log(el);
-                })   */   
-                this.similarMovies = res.results;
-                console.log(this.similarMovies);
+            .then(res => {   
+                let tenMovies = [];  
+                tenMovies = res.results.map((el) => {
+                    return el;
+                });
+                tenMovies.length = 10;
+                this.similarMovies = tenMovies;
             })
     },
      computed:{
-         movie(){
-             return this.$store.state.movie;
+         favorites(){
+             return this.$store.state.favorites;
          }
+     },
+     components: {
+         AppFavorites
      }
 }
 </script>

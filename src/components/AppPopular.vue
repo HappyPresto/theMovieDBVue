@@ -1,8 +1,8 @@
 <template>
-    <div class='popularMovies'
+    <div :class="className"
             v-if="results.length > 0"
     >
-        <div class="popularMovies__list">
+        <!--<div class="popularMovies__list">
             <div class="popularMovies__el"
                     v-for="(movie, index) in results" :key="index"
             >
@@ -10,18 +10,25 @@
                 <p>{{movie.overview}}</p>
                 <router-link :to="'/detail/' + movie.id"><button class="btn btn-success">More</button></router-link> 
             </div>
-        </div>
+        </div>-->
+        <app-movie-output
+            :className = className
+            :results = results
+        >
+        </app-movie-output>
     </div>
 </template>
 
 <script>
 //import AppInput from './components/Input';
-import {GET_POPULAR_MOVIES, START, SUCCESS, FAIL} from '../constants'
+import {GET_POPULAR_MOVIES, START, SUCCESS, FAIL} from '../constants';
+import AppMovieOutput from './AppMovieOutput';
 
 export default {
     data() {
         return {
-            results: []
+            results: [],
+            className: "popularMovies",
         }
     },			
     created() {
@@ -30,7 +37,6 @@ export default {
         })
         .then(res=>{
             this.results = res.results;
-            console.log(this.results);
         });     
     },
     methods: {
@@ -42,6 +48,9 @@ export default {
         count(){
             return this.$store.state.count;
         }
+    },
+    components: {
+        AppMovieOutput,
     }
 }
 </script>
