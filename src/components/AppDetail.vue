@@ -1,34 +1,27 @@
 <template>
 <div class="detailMovie" v-if="detailMovie.length != []" :key="detailMovie.id">
     <h3>{{detailMovie.title}}</h3>
+    <div class="detailMovie__baseInfo">
+        <p class="detailMovie__release">{{detailMovie.release_date}}</p>
+        <div class="detailMovie__rating">
+            <span class="detailMovie__rating-voteAverage"><i class="fas fa-star"></i> {{detailMovie.vote_average}}</span>
+            <span class="detailMovie__rating-voteCount"><i class="fas fa-male"></i> {{detailMovie.vote_count}}</span>
+        </div>
+    </div>
     <app-favorites 
         :id="detailMovie.id">
     </app-favorites>
     <p>Picture</p>
-    <p class="detailMovie__release">{{detailMovie.release_date}}</p>
-    <div class="detailMovie__rating">
-        <span class="detailMovie__rating-voteAverage">{{detailMovie.vote_average}}</span>
-        <span class="detailMovie__rating-voteCount">{{detailMovie.vote_count}}</span>
-    </div>
     <div class="detailMovie__overview">
         {{detailMovie.overview}}
     </div>
-    <div class="detailMobie__similar">
+    <hr />
+    <div class="detailMobie__similar" :v-if="similarMovies != []">
         <h4>Similar movies</h4>
-        <div class="detailMovie__similarList">
-            <div class="detailMovie__similarMovie"
-                 v-for="(similarMovie, index) in similarMovies"
-                 :key= index 
-            >
-            <p>{{similarMovie.title}}</p>
-            <div class="detailMovie__similarMovie-rating">
-                <span class="detailMovie__similarMovie-rating-voteAverage">{{similarMovie.vote_average}}</span>
-                <span class="detailMovie__similarMovie-rating-voteCount">{{similarMovie.vote_count}}</span>
-            </div>
-            <router-link :to="'/detail/' + similarMovie.id" class="btn btn-success">More</router-link> 
-            <hr>
-            </div>
-        </div>
+        <app-slider :className="'detailMovie__similarMovie'"
+                    :obj="similarMovies"
+        >
+        </app-slider>
     </div>
 </div>
 </template>
@@ -36,6 +29,7 @@
 <script>
 import {GET_DETAIL_MOVIE, GET_SIMILAR_MOVIE} from '../constants';
 import AppFavorites from './AppFavorites';
+import AppSlider from './AppSlider';
 
 export default {
     data() {
@@ -67,7 +61,21 @@ export default {
          }
      },
      components: {
-         AppFavorites
+         AppFavorites,
+         AppSlider
      }
 }
 </script>
+
+<style scoped>
+h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.detailMovie__baseInfo {
+    display: flex;
+}
+.detailMovie__rating {
+    margin-left: 10px;
+}
+</style>

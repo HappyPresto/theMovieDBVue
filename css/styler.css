@@ -1,0 +1,15 @@
+*  {
+	margin: 0;
+	padding: 0;
+	box-sizing: content-box !important;
+}
+i {
+    font-family: FontAwesome;
+    font-style: normal;
+}
+.fa-star {
+    color: #d6ae51;
+}
+.fa-male {
+    color: #000;
+}

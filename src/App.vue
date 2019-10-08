@@ -1,6 +1,8 @@
 <template>
     <div class="wrapper"> 
-        <app-navigation></app-navigation>   
+        <header>
+            <app-navigation></app-navigation>   
+        </header>
         <router-view></router-view>
     </div>
 </template>
@@ -41,8 +43,11 @@ export default {
 
 <style scoped>
     .wrapper{
-        padding: 15px;
-        max-width: 500px;
+        padding: 0 15px;
+        max-width: 800px;
         margin: 0 auto;
+    }
+    header {
+        background: #777;
     }
 </style>
