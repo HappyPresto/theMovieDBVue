@@ -20,6 +20,7 @@
         <h4>Similar movies</h4>
         <app-slider :className="'detailMovie__similarMovie'"
                     :obj="similarMovies"
+                    @changedetail="changeDetailPage($event)"
         >
         </app-slider>
     </div>
@@ -42,7 +43,7 @@ export default {
         this.$store.dispatch(GET_DETAIL_MOVIE, this.$route.params.id)
             .then(res => {
                 this.detailMovie = res;
-                console.log(this.detailMovie);
+                console.log("this.detailMovie ",this.detailMovie);
             })
 
         this.$store.dispatch(GET_SIMILAR_MOVIE, this.$route.params.id)
@@ -55,15 +56,27 @@ export default {
                 this.similarMovies = tenMovies;
             })
     },
-     computed:{
+    updated(){
+        //location.reloa
+    },
+    methods: {
+        changeDetailPage(e) {
+            this.$store.dispatch(GET_DETAIL_MOVIE, e.id)
+                .then(res => {
+                    this.detailMovie = res;
+                    console.log("this.detailMovie ",this.detailMovie);
+                })
+        }
+    },
+    computed: {
          favorites(){
              return this.$store.state.favorites;
          }
-     },
-     components: {
+    },
+    components: {
          AppFavorites,
          AppSlider
-     }
+    }
 }
 </script>
 

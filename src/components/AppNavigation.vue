@@ -17,6 +17,7 @@ export default {
 <style scoped>
     nav {
         display: flex;
+        background: #777;
     }
     .header__link {
         margin-right: 10px;

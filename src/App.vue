@@ -1,8 +1,9 @@
 <template>
     <div class="wrapper"> 
-        <header>
+        <!-- <header>
             <app-navigation></app-navigation>   
-        </header>
+        </header> -->
+        <router-view name="navBar"></router-view>
         <router-view></router-view>
     </div>
 </template>

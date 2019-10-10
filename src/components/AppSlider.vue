@@ -17,7 +17,7 @@
             <span :class="className + '-rating-voteAverage'"><i class="fas fa-star"></i> {{similarMovie.vote_average}}</span>
             <span :class="className + '-rating-voteCount'"><i class="fas fa-male"></i>  {{similarMovie.vote_count}}</span>
         </div>
-        <router-link :to="'/detail/' + similarMovie.id" class="btn btn-success">More</router-link> 
+        <router-link :to="{name: 'MovieDetail', params:{id: similarMovie.id}}" class="btn btn-success"><span @click="changeMovie(similarMovie.id)">More</span></router-link> 
         <hr>
         </div>
 
@@ -61,6 +61,13 @@ export default {
         },
         nextObj() {
             this.$el.querySelector(".slider").scrollLeft += this.step;
+        },
+        changeMovie(id) {
+            console.log("e");
+            console.log(id);
+            this.$emit('changedetail', {
+                id: id
+            });
         }
     },
     computed: {

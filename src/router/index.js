@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import AppPopular from '../components/AppPopular';
 import AppDetail from '../components/AppDetail';
+import AppNavigation from '../components/AppNavigation';
 import AppFavoritesMovies from '../components/AppFavoritesMovies';
 import AppNowInTheCinema from '../components/AppNowInTheCinema';
 
@@ -13,22 +14,34 @@ export default new VueRouter({
     {
         path: '/',
         name: 'main',
-        component: AppPopular
+        components: {
+            default: AppPopular,
+            navBar: AppNavigation
+        }
     },
     {
         path: '/detail/:id',
         name: 'MovieDetail',
-        component: AppDetail,
+        components: {
+            default: AppDetail,
+            navBar: AppNavigation
+        },
     },
     {
         path: '/favorites/',
         name: "Favorites Movie",
-        component: AppFavoritesMovies
+        components: {
+            default: AppFavoritesMovies,
+            navBar: AppNavigation
+        }
     },
     {
         path: '/nowplaying',
         name: "Now in the Cinema",
-        component: AppNowInTheCinema
+        components: {
+            default: AppNowInTheCinema,
+            navBar: AppNavigation
+        }
     },
     ]
 });
