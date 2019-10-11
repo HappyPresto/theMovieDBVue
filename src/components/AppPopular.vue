@@ -56,4 +56,7 @@ export default {
 </script>
 
 <style scoped>
+.popularMovies {
+    margin-top: 30px;
+}
 </style>

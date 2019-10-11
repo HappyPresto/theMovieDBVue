@@ -1,5 +1,5 @@
 <template>
-<div>
+<div :class="className">
     <app-movie-output
         :className = className
         :results = results
@@ -38,3 +38,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.nowPlayingMovies {
+    margin-top: 30px;
+}
+</style>

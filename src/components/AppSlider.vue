@@ -37,7 +37,6 @@ export default {
         return {
             slider: "",
             sliderAllCount: 0, // всего 
-            //sliderActive: 1, // активный 
             sliderOffsetLeft: 50, // отступ между слайдами
             slideroffsetStep: 200, // шаг одного слайда
         }
@@ -63,8 +62,6 @@ export default {
             this.$el.querySelector(".slider").scrollLeft += this.step;
         },
         changeMovie(id) {
-            console.log("e");
-            console.log(id);
             this.$emit('changedetail', {
                 id: id
             });
@@ -85,6 +82,13 @@ export default {
 .sliderComponent {
     display: flex;
     align-items: center;
+}
+.btn {
+    padding: 0;
+    }
+.btn span {
+    display: block;
+    padding: 6px 12px;
 }
 button {
     padding: 10px;
