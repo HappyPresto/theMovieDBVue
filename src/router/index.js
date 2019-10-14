@@ -6,6 +6,7 @@ import AppDetail from '../components/AppDetail';
 import AppNavigation from '../components/AppNavigation';
 import AppFavoritesMovies from '../components/AppFavoritesMovies';
 import AppNowInTheCinema from '../components/AppNowInTheCinema';
+import AppLogin from '../components/AppLogin';
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,14 @@ export default new VueRouter({
         name: "Now in the Cinema",
         components: {
             default: AppNowInTheCinema,
+            navBar: AppNavigation
+        }
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        components: {
+            default: AppLogin,
             navBar: AppNavigation
         }
     },

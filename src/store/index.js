@@ -8,7 +8,22 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         count: 0,
-        favorites: []
+        favorites: [],
+        login: false,
+        users: [
+            {
+                user: "Admin",
+                password: "admin",
+                favorites: "",
+                login: false
+            }, 
+            {
+                user: "User",
+                password: "12345",
+                favorites: "",
+                login: false
+            }
+        ]
     },
     getters: {
 

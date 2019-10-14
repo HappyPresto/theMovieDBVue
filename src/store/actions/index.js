@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import {GET_POPULAR_MOVIES, GET_DETAIL_MOVIE, GET_SIMILAR_MOVIE, ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES, NOW_IN_THE_CINEMA, START, SUCCESS, FAIL} from '../../constants'
+import {GET_POPULAR_MOVIES, GET_DETAIL_MOVIE, GET_SIMILAR_MOVIE, ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES, NOW_IN_THE_CINEMA, CHECK_USER, START, SUCCESS, FAIL} from '../../constants'
 const theMovieDBApiKey = 'e5508ea1bc1c68bba86b598d4aea81c9';
 
 export default {
@@ -50,6 +50,9 @@ export default {
     [REMOVE_FROM_FAVORITES]: (store, payload) =>
         store.commit(REMOVE_FROM_FAVORITES, payload.id)
     ,
+    [CHECK_USER]: (store, payload) => {
+            store.commit(CHECK_USER, payload);
+        }
     }
 /*
 http://image.tmdb.org/t/p/w185/a4BfxRK8dBgbQqbRxPs8kmLd8LG.jpg
