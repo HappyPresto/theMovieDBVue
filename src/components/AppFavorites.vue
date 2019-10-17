@@ -1,7 +1,6 @@
 <template>
 <div>
-    {{id}}
-    {{this.$store.state.favorites}}
+    {{favorites}}
     <button class="btn btn-success"
             @click="favoriteIdInStore"
     >
@@ -12,7 +11,7 @@
 </template>
 
 <script>
-import {ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES} from '../constants'
+import {ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES, LOGOUT, GET_FAVORITES} from '../constants'
 
 export default {
     props: {
@@ -20,31 +19,27 @@ export default {
     },
     data() {
         return {
+            login: "",
             favorite: false,
             favorites: []
         }
     },
     beforeMount() {
-        if (this.$store.state.favorites.indexOf(this.id, 0) != -1) {
+        /*if (this.$store.state.favorites.indexOf(this.id, 0) != -1) {
             this.favorite = true;
+        }*/
+        if (this.$store.state.login != false) {
+            this.login = this.$store.state.login;
         }
+        console.log(this.login);
+        checkMovie();
     },
     mounted() {
-        if (localStorage.favorites) {
-            this.favorites = localStorage.favorites;
-            console.log("right now", this.favorites);
-        }
+
     },
     /* не работает адекватно локалсторэдж 
     http://qaru.site/questions/15995/how-do-i-store-an-array-in-localstorage
     */
-    watch: {
-        favorites(newVal, oldVal) {
-            console.log('newVal', newVal);
-            console.log('oldVal', oldVal);
-            localStorage.favorites = this.favorites;
-        }
-    },
     methods: {
         favoriteIdInStore() {
             if (this.favorite == true) {
@@ -57,7 +52,6 @@ export default {
                 console.log("this.id ",this.favorites.indexOf(this.id));
                 console.log("this.favorites ",this.favorites)
                 this.favorites.splice(this.favorites.indexOf(this.id), 1);
-                //delete this.favorites[this.id];
                 console.log(this.favorites);
                 return;
             }
@@ -73,6 +67,19 @@ export default {
         }
     },
     computed: {
+        checkMovie() {
+            console.log(this.id);
+            let users = this.$store.state.users;
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].user == this.login) {
+                    this.favorites = users[i].favorites;
+                    let favorites = users[i].favorites;
+                    if (favorites.indexOf(this.id) != -1) {
+                        this.favorite = true;
+                    }
+                }
+            }
+        }
     }
 }
 </script>

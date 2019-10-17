@@ -14,13 +14,13 @@ export const store = new Vuex.Store({
             {
                 user: "Admin",
                 password: "admin",
-                favorites: "",
+                favorites: [815, 475557, 456],
                 login: false
             }, 
             {
                 user: "User",
                 password: "12345",
-                favorites: "",
+                favorites: [],
                 login: false
             }
         ]

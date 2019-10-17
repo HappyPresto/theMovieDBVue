@@ -6,7 +6,8 @@
         <router-link to="/nowplaying" class="header__link" name="nowplaying">Now Playing</router-link>
     </div>
     <div class="right" v-if="login">
-        <router-link to="/" class="header__link" name="login">Log Out</router-link>
+        <!--<router-link to="/" class="header__link" name="login"><span @click="logOut()">Log Out</span></router-link>-->
+        <a href="#" class="header__link" @click="logOut()">LogOut</a>
     </div>
     <div class="right" v-else>
         <router-link to="/login" class="header__link" name="login">Log In</router-link>
@@ -15,18 +16,32 @@
 </template>
 
 <script>
+import{ mapState, mapGetters } from 'vuex'
+import {LOGOUT} from '../constants'
+
 export default {
     data() {
         return {
-            login: "",
+        ///    login: "",
         }
     },
+    method: {
+        logOut() {
+            this.$store.dispatch({
+                type: LOGOUT
+            })
+        }
+    },
+    computed: { 
+        ...mapState(['login']),
+    },
     created() {
-        this.login = this.$store.state.login;
+    ///    this.login = this.login;
         console.log(this.$store.state.users);
     },
     updated() {
-        this.login = this.$store.state.login;
+        
+      //  this.login = this.$store.state.login;
         console.log(this.$store.state.users);
     }
 }

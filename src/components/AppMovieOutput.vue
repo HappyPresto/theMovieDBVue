@@ -9,7 +9,7 @@
                     <div :class="className + '__inside-desc'">
                         <h3>{{movie.title}}</h3>
                         <p><i class="fas fa-star"></i> {{movie.vote_average}}</p>
-                        <p>{{movie.overview}}</p>
+                        <p :class="className + '__overview'">{{movie.overview}}</p>
                     </div>
                     <button class="btn btn-success">More</button>
                 </div>
@@ -41,6 +41,9 @@ h3 {margin: 0;}
     text-decoration: none;
     margin-bottom: 30px;
 }
+.popularMovies__link img {height: 278px;}
+.popularMovies__overview {height: 162px; overflow-y: scroll;}
+
 .popularMovies__inside, .nowPlayingMovies__inside {
     margin-left: 30px;
     display: flex;
