@@ -1,31 +1,36 @@
 <template>
     <div class="loginPage">
-        <h1>Welcome!</h1>
-        <div class="login">
-            <div class="input">
-                <span class="input__name">Username</span>
-                <input type="text" 
-                       class="input__value"
-                       v-model="user"
-                       @blur="unfocus()"
-                       @click="select($event)"/>
+        <template v-if="!online">
+            <h1>Welcome!</h1>
+            <div class="login">
+                <div class="input">
+                    <span class="input__name">Username</span>
+                    <input type="text" 
+                        class="input__value"
+                        v-model="user"
+                        @blur="unfocus()"
+                        @click="select($event)"/>
+                </div>
+                <div class="input">
+                    <span class="input__name">Password</span>
+                    <input type="text" 
+                        class="input__value"
+                        v-model="password"
+                        @blur="unfocus()"
+                        @click="select($event)"/>
+                </div>
+                <input type="button" 
+                    class="btn btn-success" 
+                    value="Log In" 
+                    @click="checkUser()"
+                    />
             </div>
-            <div class="input">
-                <span class="input__name">Password</span>
-                <input type="text" 
-                       class="input__value"
-                       v-model="password"
-                       @blur="unfocus()"
-                       @click="select($event)"/>
-            </div>
-            <input type="button" 
-                   class="btn btn-success" 
-                   value="Log In" 
-                   @click="checkUser()"
-                   />
-        </div>
-        {{user}}
-        {{password}}
+            {{user}}
+            {{password}}
+        </template>
+        <template v-if="online">
+            <h1>Hello {{user}}!</h1>
+        </template>
     </div>
 </template>
 
@@ -37,7 +42,8 @@ export default {
         return {
             user: "",
             password: "",
-            spans: []
+            spans: [],
+            online: false,
         }
     },
     mounted() {
@@ -62,6 +68,7 @@ export default {
                 ]
             })
             .then(res => {
+                this.online = true;
                 console.log(res);
                 console.log(this.$store.state.login);
             })

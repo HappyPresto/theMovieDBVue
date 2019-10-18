@@ -1,5 +1,5 @@
 <template>
-<div v-if="results.length != []" :key="results.id">
+<div v-if="results.length != []" :key="results.id" :class="className">
     <app-movie-output
         :className = className
         :results = results
@@ -16,17 +16,22 @@ export default {
     data() {
         return {
             results: [],
-            className: ""
+            favorites: [],
+            className: "popularMovies"
         }
     },
     created() {
-        this.$store.state.favorites.map(favorite => {
-            this.$store.dispatch(GET_DETAIL_MOVIE, favorite)
-                .then(res => {
-                    this.results.push(res);
-                })
-
-        });
+        let users = this.$store.state.users;
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].user == this.$store.state.login) {
+                users[i].favorites.map(favorite => {
+                    this.$store.dispatch(GET_DETAIL_MOVIE, favorite)
+                    .then(res => {
+                        this.results.push(res);
+                    });
+                });
+            }
+        }
     },
     methods: {
 
@@ -39,3 +44,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.popularMovies {
+    margin-top: 30px;
+}
+</style>

@@ -7,7 +7,7 @@
     </div>
     <div class="right" v-if="login">
         <!--<router-link to="/" class="header__link" name="login"><span @click="logOut()">Log Out</span></router-link>-->
-        <a href="#" class="header__link" @click="logOut()">LogOut</a>
+        <button class="header__link" @click="logOut()">LogOut</button>
     </div>
     <div class="right" v-else>
         <router-link to="/login" class="header__link" name="login">Log In</router-link>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import{ mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import {LOGOUT} from '../constants'
 
 export default {
@@ -27,9 +27,10 @@ export default {
     },
     method: {
         logOut() {
-            this.$store.dispatch({
+            console.log("222");
+            /*this.$store.dispatch({
                 type: LOGOUT
-            })
+            })*/
         }
     },
     computed: { 

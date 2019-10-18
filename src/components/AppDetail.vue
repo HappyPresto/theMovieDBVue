@@ -22,10 +22,12 @@
                     <span class="detailMovie__rating-voteCount"><i class="fas fa-male"></i> {{detailMovie.vote_count}}</span>
                 </div>
             </div>
-            <app-favorites 
-                class="detailMovie__favorites"
-                :id="detailMovie.id">
-            </app-favorites>
+            <template v-if="onlineUser">
+                <app-favorites 
+                    class="detailMovie__favorites"
+                    :id="detailMovie.id">
+                </app-favorites>
+            </template>
             <div class="detailMovie__overview">
                 {{detailMovie.overview}}
             </div>
@@ -73,7 +75,7 @@ export default {
             })
     },
     updated(){
-        //location.reloa
+
     },
     methods: {
         changeDetailPage(e) {
@@ -94,9 +96,15 @@ export default {
         }
     },
     computed: {
-         favorites(){
-             return this.$store.state.favorites;
-         }
+        favorites(){
+            return this.$store.state.favorites;
+        },
+        onlineUser() {
+            if (this.$store.state.login != false) {
+                return true
+            }
+            return false
+        }
     },
     components: {
          AppFavorites,

@@ -32,7 +32,7 @@ export default {
             this.login = this.$store.state.login;
         }
         console.log(this.login);
-        checkMovie();
+        this.checkMovie;
     },
     mounted() {
 
