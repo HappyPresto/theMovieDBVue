@@ -68,9 +68,9 @@ export default {
                 ]
             })
             .then(res => {
-                this.online = true;
-                console.log(res);
-                console.log(this.$store.state.login);
+                if (this.$store.state.login) {
+                    this.online = true;
+                }
             })
         }
     },

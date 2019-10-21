@@ -14,7 +14,7 @@ export const store = new Vuex.Store({
             {
                 user: "Admin",
                 password: "admin",
-                favorites: [815, 475557, 456],
+                favorites: [815, 475557],
                 login: false
             }, 
             {

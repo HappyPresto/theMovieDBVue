@@ -12,6 +12,8 @@ export default {
         console.log(store.users.length);
         for (let i=0; i<store.users.length; i++) {
             if (store.users[i].user == payload.payload[0].user) {
+                    console.log(store.users[i].password);
+                    console.log(payload.payload[1].password);
                 if (store.users[i].password == payload.payload[1].password) {
                     //store.login = true;
                     console.log(payload.payload[0].user);

@@ -25,6 +25,9 @@ export default {
         ///    login: "",
         }
     },
+    created() {
+        this.logOut();
+    },
     method: {
         logOut() {
             console.log("222");
@@ -34,7 +37,9 @@ export default {
         }
     },
     computed: { 
-        ...mapState(['login']),
+        ...mapState([
+            'login'
+        ]),
     },
     created() {
     ///    this.login = this.login;
